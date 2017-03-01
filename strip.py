@@ -1,4 +1,10 @@
+import sys
+
 def modifyLink(link):
+	if sys.argv[1] != "":
+		mainTag = "#" + sys.argv[1]
+	else:
+		mainTag = "#agile"
 	location = link.find("?utm")
 	if link[location-1] == "/":
 		location -=1
@@ -10,11 +16,11 @@ def modifyLink(link):
 	if title == "":
 		nextloc = len(link) - newireversed[strloc:].find("/")
 		title = link[nextloc:].replace("-", " ")
-	link = "%s: %s %s\n" % (title, link, "#agile")
+	link = "%s: %s %s\n" % (title, link, mainTag)
 	return link
 
 g = open ("targetlinks.txt", "w")
-with open ("sourcelinks2.txt", "r+") as f:
+with open ("sourcelinks.txt", "r+") as f:
 	links = f.readlines()
 	for i in links:
 		g.write(modifyLink(i))
