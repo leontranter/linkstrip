@@ -1,10 +1,10 @@
-import sys
+import argparse
 
 def modifyLink(link):
-	if sys.argv[1] != "":
-		mainTag = "#" + sys.argv[1]
-	else:
-		mainTag = "#agile"
+	parser = argparse.ArgumentParser(description="specify some options such as hashtag")
+	parser.add_argument("--hashtag", help="pass in a hashtag", default="agile")
+	args = parser.parse_args()
+	mainTag = "#" + args.hashtag
 	location = link.find("?utm")
 	if link[location-1] == "/":
 		location -=1
