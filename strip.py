@@ -1,10 +1,6 @@
 import argparse
 
-def modifyLink(link):
-	parser = argparse.ArgumentParser(description="specify some options such as hashtag")
-	parser.add_argument("--hashtag", help="pass in a hashtag", default="agile")
-	args = parser.parse_args()
-	mainTag = "#" + args.hashtag
+def modifyLink(link, mainTag):
 	location = link.find("?utm")
 	if link[location-1] == "/":
 		location -=1
@@ -19,8 +15,13 @@ def modifyLink(link):
 	link = "%s: %s %s\n" % (title, link, mainTag)
 	return link
 
-g = open ("targetlinks.txt", "w")
-with open ("sourcelinks.txt", "r+") as f:
+parser = argparse.ArgumentParser(description="specify some options such as hashtag")
+parser.add_argument("--hashtag", help="pass in a hashtag", default="agile")
+args = parser.parse_args()
+mainTag = "#" + args.hashtag
+
+g
+with open ("sourcelinks.txt", "r+") as f, ("targetlinks.txt", "w") as g:
 	links = f.readlines()
 	for i in links:
-		g.write(modifyLink(i))
+		g.write(modifyLink(i, mainTag))
