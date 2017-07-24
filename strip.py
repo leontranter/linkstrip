@@ -20,7 +20,6 @@ parser.add_argument("--hashtag", help="pass in a hashtag", default="agile")
 args = parser.parse_args()
 mainTag = "#" + args.hashtag
 
-g
 with open ("sourcelinks.txt", "r+") as f, ("targetlinks.txt", "w") as g:
 	links = f.readlines()
 	for i in links:
